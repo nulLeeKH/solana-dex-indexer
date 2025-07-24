@@ -1,0 +1,71 @@
+{
+  "name": "solana-dex-indexer",
+  "version": "1.0.0",
+  "description": "Solana DEX Indexer - Multi-protocol pool monitoring and indexing system",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "sync": "NODE_NO_WARNINGS=1 ts-node -r tsconfig-paths/register scripts/sync.ts",
+    "consumer": "NODE_NO_WARNINGS=1 ts-node -r tsconfig-paths/register scripts/consumer.ts",
+    "monitor": "NODE_NO_WARNINGS=1 ts-node -r tsconfig-paths/register scripts/monitor.ts",
+    "checker": "NODE_NO_WARNINGS=1 ts-node -r tsconfig-paths/register scripts/checker.ts",
+    "test:db": "ts-node -r tsconfig-paths/register scripts/db-test.ts",
+    "check-queue": "ts-node -r tsconfig-paths/register scripts/check-db-queue.ts",
+    "migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate",
+    "migration:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d src/config/database.ts",
+    "migration:revert": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert -d src/config/database.ts",
+    "db:reset": "npm run migration:revert && npm run migration:run",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "solana",
+    "dex",
+    "indexer",
+    "meteora",
+    "orca",
+    "raydium",
+    "defi",
+    "amm",
+    "clmm"
+  ],
+  "author": "Solana DEX Indexer Team",
+  "license": "MIT",
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.31.1",
+    "@meteora-ag/cp-amm-sdk": "^1.0.12-rc.0",
+    "@pythnetwork/client": "^2.22.1",
+    "@solana/web3.js": "^1.87.6",
+    "axios": "^1.6.2",
+    "dotenv": "^17.2.0",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.17",
+    "winston": "^3.11.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "@types/pg": "^8.10.9",
+    "@types/ws": "^8.5.8",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^10.1.5",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
